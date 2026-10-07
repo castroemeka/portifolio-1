@@ -1,0 +1,216 @@
+   :root {
+        --bg: #F2F5F9;
+        --ink: #14213D;
+        --blue: #2B4BFF;
+        --line: #C9D3E3;
+        --mute: #3bc006;
+        --card: #FFFFFF;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px)
+    }
+
+    @media (prefers-color-scheme:dark) {
+        :root:not([data-theme="light"]) {
+            --bg: #0E1626;
+            --ink: #E6ECF7;
+            --blue: #8DA2FF;
+            --line: black;
+            --mute: #93A4C4;
+            --card: #14203A
+        }
+    }
+
+    :root[data-theme="dark"] {
+        --bg: #0E1626;
+        --ink: #E6ECF7;
+        --blue: #8DA2FF;
+        --line: #243350;
+        --mute: #93A4C4;
+        --card: #14203A
+    }
+
+    html {
+        scroll-padding-top: env(safe-area-inset-top, 0px)
+    }
+
+    * {
+        box-sizing: border-box
+    }
+
+    body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 400 1.0625rem/1.65 "Source Serif 4", Georgia, serif;
+        background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+        background-size: 32px 32px;
+        background-position: -1px -1px
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(var(--bg) 0, transparent 30%, transparent 70%, var(--bg) 100%);
+        pointer-events: none;
+        opacity: .85
+    }
+
+    main {
+        position: relative;
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 0 1.25rem 4rem
+    }
+
+    h1,
+    h2,
+    h3 {
+        font-family: "Bricolage Grotesque", system-ui, sans-serif;
+        margin: 0;
+        line-height: 1.05;
+        letter-spacing: -.02em
+    }
+
+    a {
+        color: var(--blue);
+        text-underline-offset: 3px
+    }
+
+    a:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 3px;
+        border-radius: 2px
+    }
+
+    .hero {
+        padding: clamp(4rem, 14vw, 9rem) 0 3rem
+    }
+
+    h1 {
+        font-size: clamp(2.4rem, 9vw, 4.6rem);
+        font-weight: 800;
+        max-width: 12ch
+    }
+
+    .pitch {
+        font-size: clamp(1.2rem, 3.4vw, 1.55rem);
+        max-width: 30ch;
+        margin: 1.5rem 0 0
+    }
+
+    .links {
+        display: flex;
+        gap: 1.25rem;
+        flex-wrap: wrap;
+        margin-top: 1.75rem;
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-weight: 500
+    }
+
+    section {
+        padding: 2.5rem 0;
+        border-top: 2px solid var(--ink)
+    }
+
+    h2 {
+        font-size: 1.9rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem
+    }
+
+    .entry {
+        display: grid;
+        grid-template-columns: 7rem 1fr;
+        gap: .5rem 1.5rem;
+        padding: 1.5rem 0;
+        border-top: 1px solid var(--line)
+    }
+
+    .entry:first-of-type {
+        border-top: 0;
+        padding-top: 0
+    }
+
+    .when {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-weight: 500;
+        color: var(--mute);
+        font-size: .95rem;
+        padding-top: .3rem
+    }
+
+    h3 {
+        font-size: 1.4rem;
+        font-weight: 800
+    }
+
+    .entry p {
+        margin: .5rem 0 0;
+        max-width: 60ch
+    }
+
+    .tags {
+        margin-top: .6rem;
+        color: var(--mute);
+        font-size: .95rem
+    }
+
+    .skills {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.25rem
+    }
+
+    .skills div {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 1rem 1.1rem
+    }
+
+    .skills strong {
+        font-family: "Bricolage Grotesque", sans-serif;
+        display: block;
+        margin-bottom: .25rem
+    }
+
+    .skills span {
+        color: var(--mute)
+    }
+
+    .contact p {
+        font-size: 1.25rem;
+        max-width: 34ch
+    }
+
+    footer {
+        color: var(--mute);
+        font-size: .9rem;
+        padding-top: 2rem
+    }
+
+    @media (max-width:560px) {
+        .entry {
+            grid-template-columns: 1fr
+        }
+    }
+
+    @media (prefers-reduced-motion:no-preference) {
+        .hero h1 {
+            animation: rise .7s ease-out both
+        }
+
+        @keyframes rise {
+            from {
+                opacity: 0;
+                transform: translateY(14px)
+            }
+
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+    }
